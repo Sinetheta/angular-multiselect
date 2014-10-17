@@ -1,6 +1,5 @@
 angular.module('multiselect', ['templates'])
 .directive('multiselect', ->
-  replace: true
   restrict: 'EA'
   scope:
     model: '='
@@ -23,10 +22,15 @@ angular.module('multiselect', ['templates'])
 
     $scope.model = model
 
+    $scope.showSelections = ->
+      $scope.model.length
+
     $scope.updateModel = ->
       replaceContents model, options.filter (option) ->
         option.selected
   ]
+  link: ($scope, element) ->
+    element.addClass('multiselect')
 )
 
 replaceContents = (array, newContents) ->
