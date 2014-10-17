@@ -1,8 +1,11 @@
-<div>
+<div ams-dropdown>
+  <button ams-dropdown-toggle>Multiselect</button>
+
   <ul>
     <li ng-repeat="item in model">{{item.label}}</li>
   </ul>
-  <ul>
+
+  <ul ams-dropdown-menu>
     <li ng-repeat="choice in options">
       <label><input
         type="checkbox"
