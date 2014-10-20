@@ -12,7 +12,7 @@
   </head>
   <body ng-app="demo">
 
-    <div ng-controller="demoCtrl">
+    <div ng-controller="demoSimpleCtrl">
 
       <h1>Angular Multiselect</h1>
 
@@ -20,12 +20,37 @@
     </div>
 
 
-    <div ng-controller="disabledCtrl">
+    <div ng-controller="demoDisabledCtrl">
 
       <h2>Disable Choices</h2>
 
       <multiselect model="disabledThings" options="terribleThingsCopy"></multiselect>
       <multiselect model="yourThing" options="terribleThings"></multiselect>
+    </div>
+
+
+    <div ng-controller="demoTemplateCtrl">
+
+      <h2>Custom Template</h2>
+
+      <multiselect
+        model="myThings"
+        options="awesomeThings"
+        template-url="custom-template.html"
+      ></multiselect>
+
+      <p>Selected:   <ul><li ng-repeat="item in myThings">{{item.label}}</li></ul>
+
+      <script type="text/ng-template" id="custom-template.html">
+        <label ng-repeat="choice in options">
+           {{choice.label}}
+           <input
+            type="checkbox"
+            ng-model="choice.selected"
+            ng-change="updateModel()"
+            ng-disabled="choice.disabled"/>
+        </label>
+      </script>
     </div>
 
     <script src="lodash/dist/lodash.js"></script>

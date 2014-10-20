@@ -1,6 +1,6 @@
 angular.module('demo', ['multiselect'])
 
-.controller('demoCtrl', function ($scope) {
+.controller('demoSimpleCtrl', function ($scope) {
   $scope.awesomeThings = [
     'AngularJS',
     'Coffeescript',
@@ -9,7 +9,7 @@ angular.module('demo', ['multiselect'])
   $scope.myThing = undefined;
 })
 
-.controller('disabledCtrl', function ($scope) {
+.controller('demoDisabledCtrl', function ($scope) {
   $scope.terribleThings = [
     'EmberJS',
     'TypeScript',
@@ -26,4 +26,12 @@ angular.module('demo', ['multiselect'])
       })
     });
   }, true)
+})
+
+.controller('demoTemplateCtrl', function ($scope) {
+  $scope.awesomeThings = [
+    'AngularJS',
+    'Coffeescript',
+    'Gulp'
+  ];
 })

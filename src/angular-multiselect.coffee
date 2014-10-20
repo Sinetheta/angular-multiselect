@@ -4,7 +4,8 @@ angular.module('multiselect', ['templates'])
   scope:
     model: '='
     options: '='
-  templateUrl: 'multiselect.html'
+  templateUrl: (element, attr) ->
+    attr.templateUrl or 'multiselect.html'
   controller: [
     '$scope'
     'Choice'
