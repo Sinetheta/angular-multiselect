@@ -7,12 +7,30 @@ angular.module('multiselect')
     constructor: (@$document) ->
 
     open: (dropdownScope) =>
+      unless @openScope
+        @$document.bind('click', @onClick)
       @openScope.isOpen = false  if @openScope and @openScope isnt dropdownScope
       @openScope = dropdownScope
 
     close: (dropdownScope) =>
       if @openScope is dropdownScope
         @openScope = null
+        @$document.unbind('click', @onClick)
+
+    onClick: (event) =>
+      # This method may still be called during the same mouse event that
+      # unbound this event handler. So check @openScope before proceeding.
+      return unless @openScope
+
+      # Ignore clicks inside the dropdown
+      toggleElement = @openScope.getToggleElement()
+      return if toggleElement and toggleElement[0].contains(event.target)
+
+      @closeDropdown()
+
+    closeDropdown: (event) =>
+      @openScope.$apply =>
+        @openScope.isOpen = false
 ])
 
 .controller('DropdownController', [
