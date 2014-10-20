@@ -18,6 +18,7 @@
     "tests"
   ],
   "dependencies": {
-    "angularjs": "~1.2.25"
+    "angularjs": "~1.2.25",
+    "lodash": "~2.4.1"
   }
 }

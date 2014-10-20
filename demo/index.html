@@ -10,16 +10,25 @@
     <link rel="stylesheet" type="text/css" href="angular-multiselect.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
   </head>
-  <body ng-app="demo" ng-controller="demoCtrl">
+  <body ng-app="demo">
 
-    <h1>Angular Multiselect</h1>
+    <div ng-controller="demoCtrl">
 
-    <multiselect model="myThing" options="awesomeThings"></multiselect>
+      <h1>Angular Multiselect</h1>
 
-    <h2>Another</h2>
+      <multiselect model="myThing" options="awesomeThings"></multiselect>
+    </div>
 
-    <multiselect model="yourThing" options="terribleThings"></multiselect>
 
+    <div ng-controller="disabledCtrl">
+
+      <h2>Disable Choices</h2>
+
+      <multiselect model="disabledThings" options="terribleThingsCopy"></multiselect>
+      <multiselect model="yourThing" options="terribleThings"></multiselect>
+    </div>
+
+    <script src="lodash/dist/lodash.js"></script>
     <script src="angularjs/angular.js"></script>
     <script src="angular-multiselect.js"></script>
     <script src="js/main.js"></script>

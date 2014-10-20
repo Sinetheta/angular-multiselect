@@ -6,11 +6,15 @@
   </ul>
 
   <ul ams-dropdown-menu>
-    <li ng-repeat="choice in options">
+    <li
+      ng-repeat="choice in options"
+      ng-class="{disabled: choice.disabled}"
+      >
       <label><input
         type="checkbox"
         ng-model="choice.selected"
         ng-change="updateModel()"
+        ng-disabled="choice.disabled"
       /> {{choice.label}}</label>
     </li>
   </ul>
