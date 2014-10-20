@@ -9,6 +9,7 @@ angular.module('multiselect')
     open: (dropdownScope) =>
       unless @openScope
         @$document.bind('click', @onClick)
+        @$document.bind('keydown', @onKeydown)
       @openScope.isOpen = false  if @openScope and @openScope isnt dropdownScope
       @openScope = dropdownScope
 
@@ -16,6 +17,7 @@ angular.module('multiselect')
       if @openScope is dropdownScope
         @openScope = null
         @$document.unbind('click', @onClick)
+        @$document.unbind('keydown', @onKeydown)
 
     onClick: (event) =>
       # This method may still be called during the same mouse event that
@@ -27,6 +29,11 @@ angular.module('multiselect')
       return if toggleElement and toggleElement[0].contains(event.target)
 
       @closeDropdown()
+
+    onKeydown: (evt) =>
+      if evt.which is 27 # Esc
+        @openScope.focusToggleElement()
+        @closeDropdown()
 
     closeDropdown: (event) =>
       @openScope.$apply =>
