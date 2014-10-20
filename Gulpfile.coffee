@@ -19,7 +19,7 @@ gulp.task 'clean', (cb) ->
 
 templateCache = require('gulp-angular-templatecache')
 templateTasks = lazypipe()
-  .pipe(templateCache, standalone: true)
+  .pipe(templateCache, {standalone: true, module: 'ams-templates'})
 
 coffeelint = require('gulp-coffeelint')
 coffeelintTasks = lazypipe()

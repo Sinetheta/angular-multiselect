@@ -1,4 +1,4 @@
-angular.module('multiselect', ['templates'])
+angular.module('multiselect', ['ams-templates'])
 .directive('multiselect', ->
   restrict: 'EA'
   scope:
