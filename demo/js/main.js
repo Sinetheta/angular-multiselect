@@ -3,7 +3,14 @@ angular.module('demo', ['multiselect'])
   $scope.awesomeThings = [
     'AngularJS',
     'Coffeescript',
-    'Gulp',
+    'Gulp'
   ];
   $scope.myThing = undefined;
+
+  $scope.terribleThings = [
+    'EmberJS',
+    'TypeScript',
+    'Make'
+  ];
+  $scope.yourThing = undefined;
 })

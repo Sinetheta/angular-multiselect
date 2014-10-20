@@ -1,17 +1,42 @@
 angular.module('multiselect')
 
+.service('DropdownService', [
+  '$document'
+
+  class DropdownService
+    constructor: (@$document) ->
+
+    open: (dropdownScope) =>
+      @openScope.isOpen = false  if @openScope and @openScope isnt dropdownScope
+      @openScope = dropdownScope
+
+    close: (dropdownScope) =>
+      if @openScope is dropdownScope
+        @openScope = null
+])
+
 .controller('DropdownController', [
   '$scope'
+  'DropdownService'
 
   class DropdownController
     constructor: (
       @scope
+      @DropdownService
     ) ->
+      @scope.getToggleElement = => @element
+
+      @scope.focusToggleElement = =>
+        @element[0].focus()
+
       @scope.$watch 'isOpen', (isOpen, wasOpen) =>
         if isOpen
           @element.addClass('open')
+          @scope.focusToggleElement()
+          @DropdownService.open(@scope)
         else
           @element.removeClass('open')
+          @DropdownService.close(@scope)
 
     init: (element) =>
       @element = element
