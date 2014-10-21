@@ -1,5 +1,5 @@
 <div ams-dropdown>
-  <div ams-dropdown-toggle>Multiselect</div>
+  <div ams-dropdown-toggle ng-bind="title"></div>
 
   <ul ng-show="showSelections()">
     <li ng-repeat="item in selected">{{item}}</li>

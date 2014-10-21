@@ -5,6 +5,7 @@ angular.module('multiselect', ['ams-templates'])
     model: '=?'
     options: '=?'
     selected: '=?'
+    title: '@'
   templateUrl: (element, attr) ->
     attr.templateUrl or 'multiselect.html'
   controller: [
@@ -32,6 +33,8 @@ angular.module('multiselect', ['ams-templates'])
         unless option instanceof Choice
           $scope.options[index] = new Choice(option)
   ]
-  link: ($scope, element) ->
+  link: ($scope, element, attrs) ->
+    attrs.title ?= 'Select'
     element.addClass('multiselect')
+
 )
