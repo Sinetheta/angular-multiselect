@@ -28,6 +28,7 @@ angular.module('demo', ['multiselect'])
 })
 
 .controller('demoTemplateCtrl', function ($scope) {
+  $scope.customTemplate = 'custom-template.html'
   $scope.awesomeThings = [
     'AngularJS',
     'Coffeescript',

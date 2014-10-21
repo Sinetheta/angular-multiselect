@@ -40,7 +40,7 @@
       <multiselect
         model="myThings"
         options="awesomeThings"
-        template-url="custom-template.html"
+        template-url="{{customTemplate}}"
       ></multiselect>
 
       <p>Selected:   <ul><li ng-repeat="item in myThings">{{item.label}}</li></ul>

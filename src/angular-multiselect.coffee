@@ -1,13 +1,20 @@
 angular.module('multiselect', ['ams-templates'])
-.directive('multiselect', ->
+.directive('multiselect', [
+  '$compile'
+  '$http'
+  '$templateCache'
+(
+  $compile
+  $http
+  $templateCache
+) ->
   restrict: 'EA'
   scope:
     model: '=?'
     options: '=?'
     selected: '=?'
     title: '@'
-  templateUrl: (element, attr) ->
-    attr.templateUrl or 'multiselect.html'
+  templateUrl: 'multiselect.html'
   controller: [
     '$scope'
     'Choice'
@@ -37,4 +44,11 @@ angular.module('multiselect', ['ams-templates'])
     attrs.title ?= 'Select'
     element.addClass('multiselect')
 
-)
+    loadTemplate = (template) ->
+      $http.get(template, { cache: $templateCache })
+      .success (templateContent) ->
+        element.replaceWith($compile(templateContent)($scope))
+
+    attrs.$observe 'templateUrl', (url) ->
+      if url then loadTemplate(url)
+])
