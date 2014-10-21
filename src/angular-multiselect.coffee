@@ -2,8 +2,9 @@ angular.module('multiselect', ['ams-templates'])
 .directive('multiselect', ->
   restrict: 'EA'
   scope:
-    model: '='
-    options: '='
+    model: '=?'
+    options: '=?'
+    selected: '=?'
   templateUrl: (element, attr) ->
     attr.templateUrl or 'multiselect.html'
   controller: [
@@ -15,6 +16,7 @@ angular.module('multiselect', ['ams-templates'])
   ) ->
     $scope.model ?= []
     $scope.options ?= []
+    $scope.selected ?= []
 
     $scope.options.forEach (option, index) ->
       $scope.options[index] = new Choice(option)
@@ -25,7 +27,7 @@ angular.module('multiselect', ['ams-templates'])
     $scope.updateModel = ->
       $scope.model = $scope.options.filter (option) ->
         option.selected
-      .map (option) ->
+      $scope.selected = $scope.model.map (option) ->
         option.value
   ]
   link: ($scope, element) ->
