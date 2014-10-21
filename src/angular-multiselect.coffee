@@ -13,26 +13,21 @@ angular.module('multiselect', ['ams-templates'])
       $scope
       Choice
   ) ->
-    model = $scope.model or []
+    $scope.model ?= []
+    $scope.options ?= []
 
-    options = $scope.options or []
-    options.forEach (option, index) ->
-      options[index] = new Choice(option)
-
-    $scope.options = options
-
-    $scope.model = model
+    $scope.options.forEach (option, index) ->
+      $scope.options[index] = new Choice(option)
 
     $scope.showSelections = ->
       $scope.model.length
 
     $scope.updateModel = ->
-      replaceContents model, options.filter (option) ->
+      $scope.model = $scope.options.filter (option) ->
         option.selected
+      .map (option) ->
+        option.value
   ]
   link: ($scope, element) ->
     element.addClass('multiselect')
 )
-
-replaceContents = (array, newContents) ->
-  array.splice(0, array.length, newContents...)
