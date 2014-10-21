@@ -6,7 +6,6 @@ angular.module('demo', ['multiselect'])
     'Coffeescript',
     'Gulp'
   ];
-  $scope.myThing = undefined;
 })
 
 .controller('demoDisabledCtrl', function ($scope) {
@@ -34,4 +33,17 @@ angular.module('demo', ['multiselect'])
     'Coffeescript',
     'Gulp'
   ];
+})
+
+.controller('dynamicCtrl', function ($scope) {
+  $scope.awesomeThings = [
+    'AngularJS',
+    'Coffeescript',
+    'Gulp'
+  ];
+
+  // so that the options list transformation doesn't mutate the input list
+  $scope.$watch('simpleList', function(simpleList) {
+    $scope.simpleListCopy = angular.copy(simpleList)
+  }, true)
 })

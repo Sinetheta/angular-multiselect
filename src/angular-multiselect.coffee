@@ -18,9 +18,6 @@ angular.module('multiselect', ['ams-templates'])
     $scope.options ?= []
     $scope.selected ?= []
 
-    $scope.options.forEach (option, index) ->
-      $scope.options[index] = new Choice(option)
-
     $scope.showSelections = ->
       $scope.model.length
 
@@ -29,6 +26,11 @@ angular.module('multiselect', ['ams-templates'])
         option.selected
       $scope.selected = $scope.model.map (option) ->
         option.value
+
+    $scope.$watch 'options' , (options) ->
+      (options or []).forEach (option, index) ->
+        unless option instanceof Choice
+          $scope.options[index] = new Choice(option)
   ]
   link: ($scope, element) ->
     element.addClass('multiselect')

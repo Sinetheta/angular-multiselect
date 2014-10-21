@@ -53,6 +53,20 @@
       </script>
     </div>
 
+    <div ng-controller="dynamicCtrl">
+
+      <h1>Dynamic options</h1>
+
+      <h2>Pick from</h2>
+      <multiselect model="pickedThings" selected="simpleList" options="awesomeThings"></multiselect>
+
+      <h2>To populate</h2>
+      <multiselect model="myThing" options="pickedThings"></multiselect>
+
+      <h2>To populate from simple list</h2>
+      <multiselect model="myThang" options="simpleListCopy"></multiselect>
+    </div>
+
     <script src="lodash/dist/lodash.js"></script>
     <script src="angularjs/angular.js"></script>
     <script src="angular-multiselect.js"></script>
